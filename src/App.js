@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import FormInput from './components/Form/Form';
+import NavbarComponent from './components/Layout/Navbar';
+import Cart from './components/Cart/Cart';
+import Shoes from './components/shoes/Shoes';
 
 function App() {
+  const [modalShow, setModalShow] = useState(false);
+  const modalHandler = () =>{
+    setModalShow(true)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavbarComponent onshowmodal={modalHandler}/>
+      <FormInput/>
+      <Shoes/>
+      <Cart
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </div>
   );
 }
